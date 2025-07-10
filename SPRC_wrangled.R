@@ -8,8 +8,27 @@ library(readr)
 ## SPRC Hydrology
 #inlet SPRC_01 to outlet SPRC_02; then inlet SPRC_03 to outlet SPRC_04
 #in the RawHydrology sheet, GMR = Great Miami River; SPC = Springcreek
-  #assuming use SPC?
 
+
+## WE MAY NOT NEED THIS CUNK DEPENDING ON STEPHEN'S REPLY ##
+library(dataRetrieval)
+# Add USGS flow data: 
+# Great Miami River at Troy OH
+siteNumber <- "03262700"
+SPRC_gage <- readNWISsite(siteNumber)
+parameterCd <- "00060"
+# As a note they have sub-daily data, but we don't need it. 
+#We're going to be pairing with daily nutrient data so it's actually super 
+#convenient that this code makes the data daily for us!
+# Raw daily data: 
+rawDailyData <- readNWISdv(
+  siteNumber, parameterCd,
+  "2022-01-01", "2025-06-06")
+#rename the discharge column to something meaningful
+colnames(rawDailyData)[colnames(rawDailyData) == 'X_00060_00003'] <- 'discharge_cfs'  
+## END CHUNK ##
+
+## using WS spreadsheet -- need to change to Data Portal when I can access it
 SPRC_hydro_df <- read.csv("SPRC_RawHydrology.csv")
 head(SPRC_hydro_df)
 
