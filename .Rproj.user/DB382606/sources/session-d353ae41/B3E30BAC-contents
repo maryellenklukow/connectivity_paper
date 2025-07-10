@@ -10,7 +10,7 @@ library(readr)
 #in the RawHydrology sheet, GMR = Great Miami River; SPC = Springcreek
 
 
-## WE MAY NOT NEED THIS CUNK DEPENDING ON STEPHEN'S REPLY ##
+## WE MAY NOT NEED THIS CHUNK DEPENDING ON STEPHEN'S REPLY ##
 library(dataRetrieval)
 # Add USGS flow data: 
 # Great Miami River at Troy OH
